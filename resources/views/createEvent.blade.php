@@ -23,7 +23,7 @@
         <form method="post" action="/">
             <input type='text' name='title' placeholder="title">
             <input type='text' name='location' placeholder="location">
-            <textarea type='text' name='description' placeholder="description">
+            <textarea type='text' name='description' placeholder="description"></textarea>
             <input type='submit' value="submit">
         </form>
     </body>
