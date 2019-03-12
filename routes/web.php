@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/feed', function() {
     return view('feed'); // replace this with controller which grabs events from model and returns view
 });
