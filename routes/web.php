@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('eventFeed', function() {
+    return view('eventFeed');
+});
 Route::get('/createEvent', function() {
     return view('createEvent');
 });
@@ -23,5 +26,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Api 
-Route::post('/api/events', 'EventsController@index');
+Route::get('/api/events', 'EventsController@index');
 Route::post('/api/events/createEvent', 'EventsController@create');

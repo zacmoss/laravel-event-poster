@@ -87,7 +87,7 @@
                 <div class="links">
                     <a href="/eventFeed">Event Feed</a>
                     <a href="/createEvent">Create Event</a>
-                    <a href="/whiteRabbit">White Rabbit</a>
+                    <a href="/whiteRabbit">???</a>
                     
                 </div>
             </div>

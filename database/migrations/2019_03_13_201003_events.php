@@ -17,7 +17,9 @@ class Events extends Migration
             $table->increments('id')->index();
             $table->string('title');
             $table->string('location');
-            //$table->string('description');
+            $table->string('description');
+            $table->date('date');
+            $table->string('time');
         });
     }
 
