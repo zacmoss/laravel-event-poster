@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Event;
+use Auth;
 
 class EventsController extends Controller
 {
@@ -56,7 +57,8 @@ class EventsController extends Controller
         return view('eventFeed', compact('eventsRender'));
         */
         $events = DB::table('events')->paginate(2);
-        return view('eventFeed', ['events' => $events]);
+        $role = Auth::user()->role;
+        return view('eventFeed', ['events' => $events, 'role' => $role]);
     }
     public function delete(Request $request) {
         $event = Event::where('id', request('id'));
