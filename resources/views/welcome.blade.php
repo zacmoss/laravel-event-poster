@@ -83,13 +83,15 @@
                 <div class="title m-b-md">
                     The Event Poster
                 </div>
-
                 <div class="links">
                     <a href="/eventFeed">Event Feed</a>
-                    <a href="/createEvent">Create Event</a>
+                    @auth <!-- runs if(auth->guard()->check()); -->
+                        <a href="/createEvent">Create Event</a>
+                    @endauth
                     <a href="/whiteRabbit">???</a>
-                    
                 </div>
+
+                
             </div>
         </div>
     </body>

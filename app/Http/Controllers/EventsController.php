@@ -36,4 +36,25 @@ class EventsController extends Controller
 
         return response()->json(['return' => 'event added']); 
     }
+    public function feed()
+    {
+        $events = Event::get()->all();
+        $eventsRender = "";
+        if (count($events) > 0) {
+            
+            foreach ($events as $event) {
+                
+                $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
+                $eventsRender .= $div;
+                /*
+                $div = "<div>heyo</div>";
+                $eventsRender .= $div;
+                */
+            }
+            
+        } else {
+            $eventsRender = "<div>No events yet</div>";
+        }
+        return view('eventFeed', compact('eventsRender'));
+    }
 }
