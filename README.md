@@ -14,6 +14,8 @@ If user is logged in, they are able to create events
 
 If user is 'administrator' they are able to delete events
 
+If user is logged in, they can see a going button on each event in event feed
+
 
 
 To be added : Events Filter / Search / 'Going'
