@@ -57,7 +57,11 @@ class EventsController extends Controller
         return view('eventFeed', compact('eventsRender'));
         */
         $events = DB::table('events')->paginate(2);
-        $role = Auth::user()->role;
+        if (Auth::check()) {
+            $role = Auth::user()->role;
+        } else {
+            $role = 'client';
+        }
         return view('eventFeed', ['events' => $events, 'role' => $role]);
     }
     public function delete(Request $request) {
