@@ -16,12 +16,13 @@
                 <?php
                     if (isset($events)) {
                         foreach ($events as $event) {
-                            echo $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
+                            echo $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p><a href='/api/events/deleteEvent/".$event->id."'><button>Delete</button></a></div></div></div></div>";
                         }
                     } 
                 ?>
             </div>
             <div class="row justify-content-center" style="margin-top: 2rem">
+                <!-- Laravel built in paginator. Super cool -->
                 {{ $events->links() }}
             </div>
         </div>

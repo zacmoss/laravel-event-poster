@@ -61,6 +61,8 @@ class EventsController extends Controller
     public function delete(Request $request) {
         $event = Event::where('id', request('id'));
         $event->delete();
-        return response()->json(['return' => 'event deleted']);
+        //return response()->json(['return' => 'event deleted']);
+        session()->flash('message', 'Event deleted!');
+        return redirect('/eventFeed');
     }
 }
