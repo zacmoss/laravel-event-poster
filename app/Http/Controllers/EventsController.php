@@ -57,4 +57,9 @@ class EventsController extends Controller
         }
         return view('eventFeed', compact('eventsRender'));
     }
+    public function delete(Request $request) {
+        $event = Event::where('id', request('id'));
+        $event->delete();
+        return response()->json(['return' => 'event deleted']);
+    }
 }
