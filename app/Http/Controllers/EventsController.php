@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Event;
 
 class EventsController extends Controller
@@ -38,6 +39,7 @@ class EventsController extends Controller
     }
     public function feed()
     {
+        /*
         $events = Event::get()->all();
         $eventsRender = "";
         if (count($events) > 0) {
@@ -46,16 +48,15 @@ class EventsController extends Controller
                 
                 $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
                 $eventsRender .= $div;
-                /*
-                $div = "<div>heyo</div>";
-                $eventsRender .= $div;
-                */
             }
             
         } else {
             $eventsRender = "<div>No events yet</div>";
         }
         return view('eventFeed', compact('eventsRender'));
+        */
+        $events = DB::table('events')->paginate(2);
+        return view('eventFeed', ['events' => $events]);
     }
     public function delete(Request $request) {
         $event = Event::where('id', request('id'));

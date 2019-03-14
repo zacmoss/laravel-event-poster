@@ -12,7 +12,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div id="eventFeed">
-                <?= $eventsRender ?>
+                <?php //$eventsRender ?>
+                <?php
+                    if (isset($events)) {
+                        foreach ($events as $event) {
+                            echo $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
+                        }
+                    } 
+                ?>
+            </div>
+            <div class="row justify-content-center" style="margin-top: 2rem">
+                {{ $events->links() }}
             </div>
         </div>
     </div>
