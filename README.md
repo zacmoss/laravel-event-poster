@@ -18,4 +18,4 @@ If user is logged in, they can see a going button on each event in event feed
 
 
 
-To be added : Events Filter / Search / 'Going'
+To be added : Events Filter / Search / 'Going' / No event input before current date

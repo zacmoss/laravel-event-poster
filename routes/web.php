@@ -33,4 +33,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Api 
 Route::get('/api/events', 'EventsController@index');
 Route::post('/api/events/createEvent', 'EventsController@create');
+Route::get('/api/events/eventSearch/{searchString}', 'EventsController@search');
 Route::get('/api/events/deleteEvent/{id}', 'EventsController@delete');

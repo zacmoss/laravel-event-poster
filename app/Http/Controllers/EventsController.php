@@ -64,6 +64,12 @@ class EventsController extends Controller
         }
         return view('eventFeed', ['events' => $events, 'role' => $role]);
     }
+    public function search(Request $request)
+    {
+        $searchString = request('searchString');
+        $results = Event::where('title', 'like', "%{$searchString}%")->orWhere('location', 'like', "%{$searchString}%")->orWhere('description', 'like', "%{$searchString}%")->get();
+        return $results;
+    }
     public function delete(Request $request) {
         $event = Event::where('id', request('id'));
         $event->delete();

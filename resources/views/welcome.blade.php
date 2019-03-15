@@ -88,6 +88,9 @@
                 </div>
             @endif
 
+            
+            
+
             <div class="content">
                 <div class="title m-b-md">
                     The Event Poster
@@ -99,7 +102,6 @@
                     @endauth
                     <a href="/whiteRabbit">???</a>
                 </div>
-
                 
             </div>
         </div>

@@ -10,39 +10,123 @@
     </div>
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-12">
+            <div class="row justify-content-center">
+                <div style="margin: .5rem">
+                    <input id="searchString" class="form-control" style="width: 400px" name="searchString" type="text">
+                </div>
+                <div style="margin: .5rem">
+                    <button class="btn btn-primary" onclick="search()">Search</button>
+                </div>
+            </div>
             <div id="eventFeed">
-                <?php //$eventsRender ?>
+
                 <?php
+                
                     if (isset($events)) {
                         if (Auth::check()) { // if logged in
                             if (isset($role) && $role == 'administrator') {
                                 foreach ($events as $event) {
-                                    echo $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p><a href='/api/events/deleteEvent/".$event->id."'><button>Delete</button></a></div></div></div></div>";
+                                    echo "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p><a href='/api/events/deleteEvent/".$event->id."'><button>Delete</button></a></div></div></div></div>";
                                 }
                             } else {
                                 foreach ($events as $event) {
-                                    echo $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p><button>Going</button></div></div></div></div>";
+                                    echo "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p><button>Going</button></div></div></div></div>";
                                 }
                             }
                         } else {
                             foreach ($events as $event) {
-                                echo $div = "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
+                                echo "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
                             }
                         }
-                        
                     } 
+                    
                 ?>
+
+                <div class="row justify-content-center" style="margin-top: 2rem">
+                    {{ $events->links() }}
+                </div>
             </div>
-            <div class="row justify-content-center" style="margin-top: 2rem">
-                <!-- Laravel built in paginator. Super cool -->
-                {{ $events->links() }}
+            <div id="searchPage" style="display: none">
+                <div class='row justify-content-center'>
+                    <div class="col-md-8" style="margin-top: 1rem">
+                        <button class="btn btn-primary" style="width: 200px" onclick="showAll()">Show All</button>
+                    </div>
+                </div>
+                <div id="searchFeed" style="displa: none"></div>
+                <div class='row justify-content-center' style='margin-top: 2rem'>
+                    <?php if (isset($results)) : ?>
+                    {{ $results->links() }}
+                    <?php endif ?>
+                </div>
             </div>
+            
         </div>
     </div>
 </div>
 
 <script>
+    let role = "<?php if (isset($role)) {
+        echo $role;
+    } else {
+        echo 'no';
+    }
+    ?>";
+    let loggedIn = "<?php if(Auth::check()) {
+        echo true;
+    } else {
+        echo false;
+    }?>"
+        
+    let search = () => {
+        let searchString = $("#searchString").val();
+        $.ajax({
+            data: searchString,
+            type: "get",
+            url: "/api/events/eventSearch/" + searchString,
+            success: function(result){
+                //let result = response.data;                    
+                let events = [];
+                if (result.length > 0) {
+                    let event;
+                    if (loggedIn) {
+
+                        if (role === 'administrator') {
+                            for (i = 0; i < result.length; i++) {
+                                event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><a href='/api/events/deleteEvent/" + result[i].id + "'><button>Delete</button></a></div></div></div></div>";
+                                events.push(event);
+                            }
+                        } else {
+                            for (i = 0; i < result.length; i++) {
+                                console.log(result[i].location);
+                                event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><button>Going</button></div></div></div></div>";
+                                events.push(event);
+                            }
+                        }
+
+                    } else {
+                        for (i = 0; i < result.length; i++) {
+                            event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p></div></div></div></div>";
+                            events.push(event);
+                        }
+                    }
+                    
+                } else {
+                    events.push("<div>No results</div>");
+                }
+                $('#searchFeed').html(events);
+                $('#eventFeed').css("display", "none");
+                $('#searchPage').css("display", "inline");
+                $('#searchFeed').css("display", "inline");
+            }
+        });
+    };
+
+    let showAll = () => {
+        $('#searchPage').css("display", "none");
+        $('#searchFeed').css("display", "none");
+        $('#eventFeed').css("display", "inline");
+    }
     /* old way to grab events
     $(document).ready(function(){
         let data;
