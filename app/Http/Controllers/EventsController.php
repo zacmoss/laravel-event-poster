@@ -57,7 +57,7 @@ class EventsController extends Controller
         }
         return view('eventFeed', compact('eventsRender'));
         */
-        $events = DB::table('events')->paginate(2);
+        $events = DB::table('events')->orderBy('date')->paginate(2);
         if (Auth::check()) {
             $role = Auth::user()->role;
             //$going = Auth::user()->going;
@@ -71,7 +71,7 @@ class EventsController extends Controller
     public function search(Request $request)
     {
         $searchString = request('searchString');
-        $results = Event::where('title', 'like', "%{$searchString}%")->orWhere('location', 'like', "%{$searchString}%")->orWhere('description', 'like', "%{$searchString}%")->get();
+        $results = Event::where('title', 'like', "%{$searchString}%")->orWhere('location', 'like', "%{$searchString}%")->orWhere('description', 'like', "%{$searchString}%")->orderBy('date')->get();
         $going = Going::get()->all();
         $id = Auth::user()->id;
         return (['results' => $results, 'going' => $going, 'id' => $id]);
@@ -90,7 +90,7 @@ class EventsController extends Controller
         return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
     public function myEvents(Request $request) {
-        $events = Event::get()->all();
+        $events = Event::orderBy('date')->get()->all();
         $going = Going::get()->all();
         return view('myEvents', ['events' => $events, 'going' => $going]);
     }

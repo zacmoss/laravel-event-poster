@@ -48,30 +48,30 @@
 
                             <div class="col-md-6">
                                 <select id="event_time" class="form-control" name="event_time">
-                                    <option value="1:00">1:00am</option>
-                                    <option value="2:00">2:00am</option>
-                                    <option value="3:00">3:00am</option>
-                                    <option value="4:00">4:00am</option>
-                                    <option value="5:00">5:00am</option>
-                                    <option value="6:00">6:00am</option>
-                                    <option value="7:00">7:00am</option>
-                                    <option value="8:00">8:00am</option>
-                                    <option value="9:00">9:00am</option>
-                                    <option value="10:00">10:00am</option>
-                                    <option value="11:00">11:00am</option>
-                                    <option value="12:00">12:00pm</option>
-                                    <option value="13:00">1:00pm</option>
-                                    <option value="14:00">2:00pm</option>
-                                    <option value="15:00">3:00pm</option>
-                                    <option value="16:00">4:00pm</option>
-                                    <option value="17:00">5:00pm</option>
-                                    <option value="18:00">6:00pm</option>
-                                    <option value="19:00">7:00pm</option>
-                                    <option value="20:00">8:00pm</option>
-                                    <option value="21:00">9:00pm</option>
-                                    <option value="22:00">10:00pm</option>
-                                    <option value="23:00">11:00pm</option>
-                                    <option value="24:00">12:00am</option>
+                                    <option value="1:00am">1:00am</option>
+                                    <option value="2:00am">2:00am</option>
+                                    <option value="3:00am">3:00am</option>
+                                    <option value="4:00am">4:00am</option>
+                                    <option value="5:00am">5:00am</option>
+                                    <option value="6:00am">6:00am</option>
+                                    <option value="7:00am">7:00am</option>
+                                    <option value="8:00am">8:00am</option>
+                                    <option value="9:00am">9:00am</option>
+                                    <option value="10:00am">10:00am</option>
+                                    <option value="11:00am">11:00am</option>
+                                    <option value="12:00pm">12:00pm</option>
+                                    <option value="1:00pm">1:00pm</option>
+                                    <option value="2:00pm">2:00pm</option>
+                                    <option value="3:00pm">3:00pm</option>
+                                    <option value="4:00pm">4:00pm</option>
+                                    <option value="5:00pm">5:00pm</option>
+                                    <option value="6:00pm">6:00pm</option>
+                                    <option value="7:00pm">7:00pm</option>
+                                    <option value="8:00pm">8:00pm</option>
+                                    <option value="9:00pm">9:00pm</option>
+                                    <option value="10:00pm">10:00pm</option>
+                                    <option value="11:00pm">11:00pm</option>
+                                    <option value="12:00am">12:00am</option>
                                 </select>
                             </div>
                         </div>
