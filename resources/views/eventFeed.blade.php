@@ -90,23 +90,24 @@
                 if (result.length > 0) {
                     let event;
                     if (loggedIn) {
+                        console.log(result)
 
                         if (role === 'administrator') {
                             for (i = 0; i < result.length; i++) {
-                                event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><a href='/api/events/deleteEvent/" + result[i].id + "'><button>Delete</button></a></div></div></div></div>";
+                                event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><a href='/api/events/deleteEvent/" + result[i].id + "'><button>Delete</button></a></div></div></div></div>";
                                 events.push(event);
                             }
                         } else {
                             for (i = 0; i < result.length; i++) {
                                 console.log(result[i].location);
-                                event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><button>Going</button></div></div></div></div>";
+                                event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><button>Going</button></div></div></div></div>";
                                 events.push(event);
                             }
                         }
 
                     } else {
                         for (i = 0; i < result.length; i++) {
-                            event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p></div></div></div></div>";
+                            event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p></div></div></div></div>";
                             events.push(event);
                         }
                     }
