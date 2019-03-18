@@ -22,9 +22,11 @@ User can see if they've rsvp'd to an event from feed, search, and individual eve
 
 User can click to rsvp to an event on individual event page
 
+User can see all events they are rsvp'd to on their myEvents page
 
 
-To be added : Events Filter /  No event input before current date
+
+To be added : Events Filter /  No event input before current date / Styling / Input length verification
 
 
 Issues:
