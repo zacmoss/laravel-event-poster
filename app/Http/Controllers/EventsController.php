@@ -38,6 +38,12 @@ class EventsController extends Controller
         //session()->flash('message', 'Person added!');
 
         return response()->json(['return' => 'event added']); 
+        /*
+        $events = DB::table('events')->orderBy('date')->paginate(2);
+        $going = Going::get()->all();
+        $role = Auth::user()->role;
+        return redirect('eventFeed', ['events' => $events, 'role' => $role, 'going' => $going]);
+        */
     }
     public function feed()
     {
