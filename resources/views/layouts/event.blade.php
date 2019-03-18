@@ -1,7 +1,7 @@
-<div id=" . $event->id . " class='row justify-content-center event-card'>
+<div class='row justify-content-center event-card'>
     <div class='col-md-8'>
         <div class='card'>
-            <a href='/api/events/singleEvent/<?= $event->id ?>' style='text-decoration: none; color: black;'>
+            <a href='/event/<?= $event->id ?>' style='text-decoration: none; color: black;'>
                 <div class='card-header'>
                     <?= $event->title ?>
                 </div>
@@ -17,7 +17,7 @@
                     <p class='card-text'><?= $event->date ?></p>
                     <p class='card-text'><?= $event->time ?></p>
                     @if ($boo)
-                        <p style='color: green'>Going</p>
+                        <p style='color: green'><i>Currently going to this event</i></p>
                     @endif
                 </div>
             </a>

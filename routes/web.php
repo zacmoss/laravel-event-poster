@@ -26,6 +26,9 @@ Route::get('/createEvent', function() {
     };
 });
 
+Route::get('/event/{id}', 'EventsController@singleEvent');
+Route::get('/myEvents', 'EventsController@myEvents');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -35,7 +38,7 @@ Route::get('/api/events', 'EventsController@index');
 Route::post('/api/events/createEvent', 'EventsController@create');
 Route::get('/api/events/eventSearch/{searchString}', 'EventsController@search');
 Route::get('/api/events/deleteEvent/{id}', 'EventsController@delete');
-Route::get('/api/events/singleEvent/{id}', 'EventsController@singleEvent');
+//Route::get('/api/events/singleEvent/{id}', 'EventsController@singleEvent');
 
 Route::post('/api/going/add', 'GoingController@create');
 Route::post('/api/going/remove', 'GoingController@delete');

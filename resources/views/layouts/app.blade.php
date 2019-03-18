@@ -25,20 +25,47 @@
         .event-card {
             margin-top: 2rem;
         }
+        .btn-red {
+            background-color: white;
+            border: 1px solid red;
+            color: red;
+        }
+        .btn-red:hover {
+            cursor: pointer;
+            background-color: red;
+            border: none;
+            color: white;
+        }
+        .btn-green {
+            background-color: white;
+            border: 1px solid green;
+            color: green;
+        }
+        .btn-green:hover {
+            cursor: pointer;
+            background-color: green;
+            border: none;
+            color: white;
+        }
+        .link {
+            margin-right: 2rem !important;
+        }
+        .link:hover {
+            color: lightgray !important;
+        }
     </style>
 </head>
 <body>
     <div id="app">
-    <?php
-        if ('flash::message') {
-            @include('flash::message');
-        }
-    ?>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand link"  href="{{ url('/') }}">
                     The Event Poster
                 </a>
+                @if (Auth::check())
+                    <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>
+                    <a class='navbar-brand link' href='/myEvents'>My Events</a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

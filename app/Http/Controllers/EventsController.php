@@ -89,4 +89,9 @@ class EventsController extends Controller
         $going = Going::get()->all();
         return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
+    public function myEvents(Request $request) {
+        $events = Event::get()->all();
+        $going = Going::get()->all();
+        return view('myEvents', ['events' => $events, 'going' => $going]);
+    }
 }
