@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Event;
+use App\Going;
 use Auth;
 
 class EventsController extends Controller
@@ -59,16 +60,21 @@ class EventsController extends Controller
         $events = DB::table('events')->paginate(2);
         if (Auth::check()) {
             $role = Auth::user()->role;
+            //$going = Auth::user()->going;
+            $going = Going::get()->all();
         } else {
             $role = 'client';
+            $going = [];
         }
-        return view('eventFeed', ['events' => $events, 'role' => $role]);
+        return view('eventFeed', ['events' => $events, 'role' => $role, 'going' => $going]);
     }
     public function search(Request $request)
     {
         $searchString = request('searchString');
         $results = Event::where('title', 'like', "%{$searchString}%")->orWhere('location', 'like', "%{$searchString}%")->orWhere('description', 'like', "%{$searchString}%")->get();
-        return $results;
+        $going = Going::get()->all();
+        $id = Auth::user()->id;
+        return (['results' => $results, 'going' => $going, 'id' => $id]);
     }
     public function delete(Request $request) {
         $event = Event::where('id', request('id'));
@@ -76,5 +82,11 @@ class EventsController extends Controller
         //return response()->json(['return' => 'event deleted']);
         session()->flash('message', 'Event deleted!');
         return redirect('/eventFeed');
+    }
+    public function singleEvent(Request $request) {
+        //$event = Event::where('id', request('id'));
+        $events = Event::get()->all();
+        $going = Going::get()->all();
+        return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
 }
