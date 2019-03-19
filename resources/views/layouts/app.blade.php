@@ -47,6 +47,12 @@
             border: none;
             color: white;
         }
+        .btn:focus {
+            outline: none !important;
+        }
+        .btn:active:focus {
+            outline: none !important;
+        }
         .link {
             margin-right: 2rem !important;
         }
@@ -76,7 +82,7 @@
                 @if (Auth::check())
                     <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>
                     @if (Auth::user()->role == 'client')
-                        <a class='navbar-brand link' href='/myEvents'>My Events</a>
+                        <!--<a class='navbar-brand link' href='/myEvents'>My Events</a>-->
                     @endif
                     <a class='navbar-brand link' href='/createEvent'>Create Event</a>
                 @endif
@@ -109,6 +115,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->role == 'client')
+                                        <a class="dropdown-item" href='/myEvents'>My Events</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

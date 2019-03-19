@@ -120,6 +120,7 @@ class EventsController extends Controller
             //$events = Event::orderBy('date')->get()->all();
 
             $going = Going::get()->all();
+            $events = Event::get()->all();
             
             /*
             $events = DB::table('going')
@@ -128,8 +129,9 @@ class EventsController extends Controller
                 ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
                 ->orderBy('events.date')
                 ->paginate(2);
-                */
-                
+            */
+            
+            
             $events = DB::table('going')
                 ->join('users', function ($join) {
                     $join->on('users.id', '=', 'going.userId')
@@ -139,16 +141,9 @@ class EventsController extends Controller
                 ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
                 ->orderBy('events.date')
                 ->paginate(2);
-            $count = 0;
-
-            foreach ($going as $g) {
-                if ($g->userId == Auth::user()->id) {
-                    $count = $count + 1;
-                }
-            }
 
 
-            return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo', 'count' => $count ]);
+            return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo' ]);
         } else {
             return redirect('/eventFeed');
         }

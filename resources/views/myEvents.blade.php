@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8" style="text-align: center; margin: 1rem 0">
             <h2>My Events</h2>
-            <i><p>Currently going to <?= $count ?> events</p></i>
+            <i><p>Currently going to {{ $events->total() }} events</p></i>
         </div>
     </div>
     
@@ -29,7 +29,7 @@
                 @endif
 
             </div>
-            @if (!$count == 0)
+            @if (!$events->total() == 0)
                 <div class="row justify-content-center" style="margin-top: 2rem">
                     {{ $events->links() }}
                 </div>

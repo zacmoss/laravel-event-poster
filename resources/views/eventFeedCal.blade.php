@@ -192,6 +192,7 @@
                 $('#eventFeed').css("display", "none");
                 $('#searchPage').css("display", "inline");
                 $('#searchFeed').css("display", "inline");
+                $('#showAllBtn').css("display", "inline");
             }
         });
     }
