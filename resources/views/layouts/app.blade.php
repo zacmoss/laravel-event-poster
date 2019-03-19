@@ -27,12 +27,12 @@
         }
         .btn-red {
             background-color: white;
-            border: 1px solid red;
-            color: red;
+            border: 1px solid maroon;
+            color: maroon;
         }
         .btn-red:hover {
             cursor: pointer;
-            background-color: red;
+            background-color: maroon;
             border: none;
             color: white;
         }
@@ -75,7 +75,9 @@
                 </a>
                 @if (Auth::check())
                     <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>
-                    <a class='navbar-brand link' href='/myEvents'>My Events</a>
+                    @if (Auth::user()->role == 'client')
+                        <a class='navbar-brand link' href='/myEvents'>My Events</a>
+                    @endif
                     <a class='navbar-brand link' href='/createEvent'>Create Event</a>
                 @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

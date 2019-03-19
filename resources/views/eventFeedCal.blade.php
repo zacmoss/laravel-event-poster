@@ -17,6 +17,7 @@
                 </div>
                 <div style="margin: .5rem">
                     <button class="btn btn-primary" onclick="search()">Search</button>
+                    <button id="showAllBtn" class="btn btn-primary" style="width: 100px; display: none" onclick="showAll()">Show All</button>
                 </div>
             </div>
             <div id="eventFeed">
@@ -38,7 +39,7 @@
             <div id="searchPage" style="display: none">
                 <div class='row justify-content-left'>
                     <div class="col-md-8" style="margin-top: 1rem">
-                        <button class="btn btn-primary" style="width: 200px" onclick="showAll()">Show All</button>
+                        <!--<button class="btn btn-primary" style="width: 200px" onclick="showAll()">Show All</button>-->
                     </div>
                 </div>
                 <div id="searchFeed" style="displa: none"></div>
@@ -54,7 +55,7 @@
         <div id="filters" class="col-lg-4">
             <div class="row justify-content-center">
                 <div>
-                    <h5 style="text-align: center; margin-bottom: 2rem">Filters</h5>
+                    <h5 style="margin-bottom: 2rem">Filters</h5>
                 
                     <label>Filter by date</label>
                     <input class="form-control" style="width: 100% !important" id="filterDate" type='date'>
@@ -130,12 +131,13 @@
                     
                 } else {
                     
-                    events.push("<div>No resultsss</div>");
+                    events.push("<div class='row justify-content-center' style='margin-top: 6rem'><h2>No results</h2></div>");
                 }
                 $('#searchFeed').html(events);
                 $('#eventFeed').css("display", "none");
                 $('#searchPage').css("display", "inline");
                 $('#searchFeed').css("display", "inline");
+                $('#showAllBtn').css("display", "inline");
             }
         });
     };
@@ -184,7 +186,7 @@
                     
                 } else {
                     
-                    events.push("<div>No resultsss</div>");
+                    events.push("<div class='row justify-content-center' style='margin-top: 6rem'><h2>No results</h2></div>");
                 }
                 $('#searchFeed').html(events);
                 $('#eventFeed').css("display", "none");
@@ -197,6 +199,7 @@
     let showAll = () => {
         $('#searchPage').css("display", "none");
         $('#searchFeed').css("display", "none");
+        $('#showAllBtn').css("display", "none");
         $('#eventFeed').css("display", "inline");
     }
 

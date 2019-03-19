@@ -29,9 +29,11 @@
                 @endif
 
             </div>
-            <div class="row justify-content-center" style="margin-top: 2rem">
-                {{ $events->links() }}
-            </div>
+            @if (!$count == 0)
+                <div class="row justify-content-center" style="margin-top: 2rem">
+                    {{ $events->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </div>

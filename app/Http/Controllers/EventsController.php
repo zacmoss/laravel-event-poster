@@ -38,12 +38,20 @@ class EventsController extends Controller
         //session()->flash('message', 'Person added!');
 
         return response()->json(['return' => 'event added']); 
+        
         /*
         $events = DB::table('events')->orderBy('date')->paginate(2);
-        $going = Going::get()->all();
-        $role = Auth::user()->role;
-        return redirect('eventFeed', ['events' => $events, 'role' => $role, 'going' => $going]);
+        if (Auth::check()) {
+            $role = Auth::user()->role;
+            //$going = Auth::user()->going;
+            $going = Going::get()->all();
+        } else {
+            $role = 'client';
+            $going = [];
+        }
+        return view('eventFeedCal', ['events' => $events, 'role' => $role, 'going' => $going]);
         */
+        
     }
     public function feed()
     {
@@ -108,23 +116,41 @@ class EventsController extends Controller
         return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
     public function myEvents(Request $request) {
+        if (Auth::user()->role == 'client') {
+            //$events = Event::orderBy('date')->get()->all();
 
-        //$events = Event::orderBy('date')->get()->all();
+            $going = Going::get()->all();
+            
+            /*
+            $events = DB::table('going')
+                ->join('users', 'going.userId', '=', 'users.id')
+                ->join('events', 'going.eventId', '=', 'events.id')
+                ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
+                ->orderBy('events.date')
+                ->paginate(2);
+                */
+                
+            $events = DB::table('going')
+                ->join('users', function ($join) {
+                    $join->on('users.id', '=', 'going.userId')
+                        ->where('going.userId', '=', Auth::user()->id);
+                })
+                ->join('events', 'going.eventId', '=', 'events.id')
+                ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
+                ->orderBy('events.date')
+                ->paginate(2);
+            $count = 0;
 
-        $going = Going::get()->all();
-        $eventCount = DB::table('going')
-            ->join('users', 'going.userId', '=', 'users.id')
-            ->join('events', 'going.eventId', '=', 'events.id')
-            ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
-            ->orderBy('events.date')
-            ->get();
-        $events = DB::table('going')
-            ->join('users', 'going.userId', '=', 'users.id')
-            ->join('events', 'going.eventId', '=', 'events.id')
-            ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
-            ->orderBy('events.date')
-            ->paginate(2);
+            foreach ($going as $g) {
+                if ($g->userId == Auth::user()->id) {
+                    $count = $count + 1;
+                }
+            }
 
-        return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo', 'count' => count($eventCount) ]);
+
+            return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo', 'count' => $count ]);
+        } else {
+            return redirect('/eventFeed');
+        }
     }
 }
