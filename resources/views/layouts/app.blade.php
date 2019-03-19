@@ -57,6 +57,12 @@
             font-weight: 700 !important;
             font-size: 25px !important;
         }
+        @media (max-width: 1000px) {
+            #filters {
+                display: none;
+            }
+        }
+        
     </style>
 </head>
 <body>
@@ -64,7 +70,8 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand link"  href="{{ url('/') }}">
-                    <img src="logo3.png" width="30px" height="30px">
+                    <!--<img src="logo3.png" width="30px" height="30px">-->
+                    EP
                 </a>
                 @if (Auth::check())
                     <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>

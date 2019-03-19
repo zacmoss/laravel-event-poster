@@ -6,9 +6,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8" style="text-align: center; margin: 1rem 0">
             <h2>My Events</h2>
+            <i><p>Currently going to <?= $count ?> events</p></i>
         </div>
     </div>
-
+    
     <div class="row justify-content-center">
         <div class="col-lg-12">
             <div>

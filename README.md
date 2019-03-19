@@ -24,9 +24,12 @@ User can click to rsvp to an event on individual event page
 
 User can see all events they are rsvp'd to on their myEvents page
 
+User filter events by date
 
 
-To be added : Events Filter /  No event input before current date / Styling / Input length verification
+
+To be added : No event input before current date / Styling / Input length verification
+
 
 
 Issues:
@@ -35,3 +38,5 @@ Redundant event render for regular event feed and search feed...
 
 Should make search with functionality which takes an array of events to search through so we can
 add this feature to myEvents
+
+When adding the date filter, had to change styling of events iteration for myEvents page by adding if statement

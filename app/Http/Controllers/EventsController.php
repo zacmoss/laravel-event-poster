@@ -72,7 +72,7 @@ class EventsController extends Controller
             $role = 'client';
             $going = [];
         }
-        return view('eventFeed', ['events' => $events, 'role' => $role, 'going' => $going]);
+        return view('eventFeedCal', ['events' => $events, 'role' => $role, 'going' => $going]);
     }
     public function search(Request $request)
     {
@@ -81,6 +81,14 @@ class EventsController extends Controller
         $going = Going::get()->all();
         $id = Auth::user()->id;
         return (['results' => $results, 'going' => $going, 'id' => $id]);
+    }
+    public function filterByDate(Request $request)
+    {
+        $date = request('date');
+        $results = Event::whereDate('date', '=', $date)->get();
+        $going = Going::get()->all();
+        $id = Auth::user()->id;
+        return (['results' => $results, 'going'=> $going, 'id' => $id]);
     }
     public function delete(Request $request) {
         if (Auth::user()->role == 'administrator') {
@@ -104,7 +112,12 @@ class EventsController extends Controller
         //$events = Event::orderBy('date')->get()->all();
 
         $going = Going::get()->all();
-        
+        $eventCount = DB::table('going')
+            ->join('users', 'going.userId', '=', 'users.id')
+            ->join('events', 'going.eventId', '=', 'events.id')
+            ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
+            ->orderBy('events.date')
+            ->get();
         $events = DB::table('going')
             ->join('users', 'going.userId', '=', 'users.id')
             ->join('events', 'going.eventId', '=', 'events.id')
@@ -112,6 +125,6 @@ class EventsController extends Controller
             ->orderBy('events.date')
             ->paginate(2);
 
-        return view('myEvents', ['events' => $events, 'going' => $going]);
+        return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo', 'count' => count($eventCount) ]);
     }
 }

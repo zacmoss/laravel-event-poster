@@ -37,24 +37,23 @@
             @endforeach
             
             <div class='card-body'>
-                <p class='card-text'><?= $location ?></p>
-                <p class='card-text'><?= $description ?></p>
-                <p class='card-text'><?= $date ?></p>
-                <p class='card-text'><?= $time ?></p>
+                <p class='card-text'>Location: <?= $location ?></p>
+                <p class='card-text'>Description <?= $description ?></p>
+                <p class='card-text'>When: <?= $date ?> | <?= $time ?></p>
 
                 @if ($boo)
                     <p><i>Currently going to this event</i></p>
                     <form method='post' action='/api/going/remove'>
                         @csrf
                         <input type='hidden' name="eventId" value='<?= $id ?>'>
-                        <input type='submit' class='btn-red' value="Don't Go">
+                        <input type='submit' class='btn-red' value="DON'T GO">
                         
                     </form>
                 @else
                     <form method='post' action='/api/going/add'>
                         @csrf
                         <input type='hidden' name="eventId" value='<?= $id ?>'>
-                        <input type='submit' class='btn-green' value="RSVP">
+                        <input type='submit' class='btn-green' value="GO TO THIS EVENT">
                     </form>
                 @endif
                 
