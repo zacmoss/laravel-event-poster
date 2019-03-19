@@ -28,7 +28,7 @@ User filter events by date
 
 
 
-To be added : No event input before current date / Styling / Input length verification
+To be added : No event input before current date / Styling / Input length verification / map api integration
 
 
 
