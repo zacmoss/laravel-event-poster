@@ -20,38 +20,15 @@
                 </div>
             </div>
             <div id="eventFeed">
-
-                <?php
-                
-                    if (isset($events)) {
-                        if (count($events) > 0) {
-                            if (Auth::check()) { // if logged in
-                                if (isset($role) && $role == 'administrator') {
-                                    foreach ($events as $event) {
-                                        echo "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p><a href='/api/events/deleteEvent/".$event->id."'><button>Delete</button></a></div></div></div></div>";
-                                    }
-                                } else { ?>
-                                    @if (isset($going))
-                                        @foreach ($events as $event)
-                                            
-                                            @include('layouts.event', ['event' => $event, 'going' => $going])
-
-                                        @endforeach
-                                    @endif
-                            <?php }
-                            } else {
-                                foreach ($events as $event) {
-                                    echo "<div id=" . $event->id . " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" . $event->title . "</div><div class='card-body'><p class='card-text'>" . $event->location . "</p><p class='card-text'>" . $event->description . "</p><p class='card-text'>" . $event->date . "</p><p class='card-text'>" . $event->time . "</p></div></div></div></div>";
-                                }
-                            }
-                        } else {
-                            echo "<div class='row justify-content-center' style='margin-top: 4rem'><h4>No events to show</h4></div>";
-                        }
-                        
-                    }
-                    
-                ?>
-
+                @if (isset($events))
+                    @if (count($events) > 0)
+                        @foreach ($events as $event)
+                            @include('layouts.eventSkeleton', ['event' => $event, 'going' => $going])
+                        @endforeach
+                    @else
+                        <?= "<div class='row justify-content-center' style='margin-top: 4rem'><h4>No events to show</h4></div>" ?>
+                    @endif
+                @endif
                 <div class="row justify-content-center" style="margin-top: 2rem">
                     {{ $events->links() }}
                 </div>
@@ -116,16 +93,16 @@
                                     }
                                 }
                                 if (boo) {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><p style='color: green'>Going</p></div></div></div></div></a>";
+                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p><p style='color: green'>Going</p></div></div></div></div></a>";
                                 } else {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p></div></div></div></div></a>";
+                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div></a>";
                                 }
                                 events.push(event);
                             }
                         }
                     } else {
                         for (i = 0; i < result.length; i++) {
-                            event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p></div></div></div></div>";
+                            event = "<div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div>";
                             events.push(event);
                         }
                     }

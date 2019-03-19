@@ -19,7 +19,7 @@
                             @foreach ($events as $event)
                                 @foreach ($going as $g)
                                     @if ($g->userId == $id && $g->eventId == $event->id)
-                                        @include('layouts.event', ['event' => $event, 'going' => $going])
+                                        @include('layouts.eventSkeleton', ['event' => $event, 'going' => $going])
                                     @endif
                                 @endforeach
                             @endforeach
@@ -27,6 +27,9 @@
                     @endif
                 @endif
 
+            </div>
+            <div class="row justify-content-center" style="margin-top: 2rem">
+                {{ $events->links() }}
             </div>
         </div>
     </div>

@@ -51,7 +51,11 @@
             margin-right: 2rem !important;
         }
         .link:hover {
-            color: lightgray !important;
+            color: gray !important;
+        }
+        .event-card .card-header {
+            font-weight: 700 !important;
+            font-size: 25px !important;
         }
     </style>
 </head>
@@ -60,7 +64,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand link"  href="{{ url('/') }}">
-                    The Event Poster
+                    <img src="logo3.png" width="30px" height="30px">
                 </a>
                 @if (Auth::check())
                     <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>

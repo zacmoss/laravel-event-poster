@@ -83,11 +83,15 @@ class EventsController extends Controller
         return (['results' => $results, 'going' => $going, 'id' => $id]);
     }
     public function delete(Request $request) {
-        $event = Event::where('id', request('id'));
-        $event->delete();
-        //return response()->json(['return' => 'event deleted']);
-        session()->flash('message', 'Event deleted!');
-        return redirect('/eventFeed');
+        if (Auth::user()->role == 'administrator') {
+            $event = Event::where('id', request('id'));
+            $event->delete();
+            return response()->json(['return' => 'event deleted']);
+            //session()->flash('message', 'Event deleted!');
+            //return redirect('/eventFeed');
+        } else {
+            return response()->json(['return' => 'must be admin to do that!']);
+        }
     }
     public function singleEvent(Request $request) {
         //$event = Event::where('id', request('id'));
@@ -96,8 +100,18 @@ class EventsController extends Controller
         return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
     public function myEvents(Request $request) {
-        $events = Event::orderBy('date')->get()->all();
+        
+        //$events = Event::orderBy('date')->get()->all();
+
         $going = Going::get()->all();
+        
+        $events = DB::table('going')
+            ->join('users', 'going.userId', '=', 'users.id')
+            ->join('events', 'going.eventId', '=', 'events.id')
+            ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
+            ->orderBy('events.date')
+            ->paginate(2);
+
         return view('myEvents', ['events' => $events, 'going' => $going]);
     }
 }
