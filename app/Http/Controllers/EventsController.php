@@ -86,9 +86,9 @@ class EventsController extends Controller
         if (Auth::user()->role == 'administrator') {
             $event = Event::where('id', request('id'));
             $event->delete();
-            return response()->json(['return' => 'event deleted']);
+            //return response()->json(['return' => 'event deleted']);
             //session()->flash('message', 'Event deleted!');
-            //return redirect('/eventFeed');
+            return redirect('/eventFeed');
         } else {
             return response()->json(['return' => 'must be admin to do that!']);
         }
@@ -100,7 +100,7 @@ class EventsController extends Controller
         return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
     public function myEvents(Request $request) {
-        
+
         //$events = Event::orderBy('date')->get()->all();
 
         $going = Going::get()->all();

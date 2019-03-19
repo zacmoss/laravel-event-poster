@@ -32,3 +32,6 @@ To be added : Events Filter /  No event input before current date / Styling / In
 Issues:
 
 Redundant event render for regular event feed and search feed...
+
+Should make search with functionality which takes an array of events to search through so we can
+add this feature to myEvents

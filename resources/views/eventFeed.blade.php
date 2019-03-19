@@ -23,7 +23,7 @@
                 @if (isset($events))
                     @if (count($events) > 0)
                         @foreach ($events as $event)
-                            @include('layouts.eventSkeleton', ['event' => $event, 'going' => $going])
+                            @include('layouts.event', ['event' => $event, 'going' => $going])
                         @endforeach
                     @else
                         <?= "<div class='row justify-content-center' style='margin-top: 4rem'><h4>No events to show</h4></div>" ?>
@@ -93,7 +93,7 @@
                                     }
                                 }
                                 if (boo) {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p><p style='color: green'>Going</p></div></div></div></div></a>";
+                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p><p style='color: green'><i>Currently going to this event</i></p></div></div></div></div></a>";
                                 } else {
                                     event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-center event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div></a>";
                                 }

@@ -19,7 +19,7 @@
                             @foreach ($events as $event)
                                 @foreach ($going as $g)
                                     @if ($g->userId == $id && $g->eventId == $event->id)
-                                        @include('layouts.eventSkeleton', ['event' => $event, 'going' => $going])
+                                        @include('layouts.event', ['event' => $event, 'going' => $going])
                                     @endif
                                 @endforeach
                             @endforeach
