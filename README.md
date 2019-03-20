@@ -32,7 +32,7 @@ User can filter events by city
 
 To be added : No event input before current date / Styling / Input length verification / map api integration / add capitalization check for cities (lowercase all cities in db and checking db) / Need
 to be able to apply multiple filters like filter by city AND date / Need to restart pagination count when
-clicking show all
+clicking show all / should be different filters for event feed (all) and myEvents (going set)
 
 
 

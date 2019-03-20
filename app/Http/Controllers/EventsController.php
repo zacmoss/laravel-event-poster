@@ -91,7 +91,14 @@ class EventsController extends Controller
         $searchString = request('searchString');
         $results = Event::where('title', 'like', "%{$searchString}%")->orWhere('location', 'like', "%{$searchString}%")->orWhere('description', 'like', "%{$searchString}%")->orderBy('date')->get();
         $going = Going::get()->all();
-        $id = Auth::user()->id;
+
+        $id;
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        } else {
+            $id = null;
+        }
+        
         return (['results' => $results, 'going' => $going, 'id' => $id]);
     }
     public function filterByDate(Request $request)
@@ -99,7 +106,14 @@ class EventsController extends Controller
         $date = request('date');
         $results = Event::whereDate('date', '=', $date)->get();
         $going = Going::get()->all();
-        $id = Auth::user()->id;
+        
+        $id;
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        } else {
+            $id = null;
+        }
+        
         return (['results' => $results, 'going'=> $going, 'id' => $id]);
     }
     public function filterByCity(Request $request)
@@ -107,7 +121,14 @@ class EventsController extends Controller
         $city = request('city');
         $results = Event::where('city', '=', $city)->get();
         $going = Going::get()->all();
-        $id = Auth::user()->id;
+
+        $id;
+        if (Auth::check()) {
+            $id = Auth::user()->id;
+        } else {
+            $id = null;
+        }
+        
         return (['results' => $results, 'going'=> $going, 'id' => $id]);
     }
     public function delete(Request $request) {
@@ -128,34 +149,38 @@ class EventsController extends Controller
         return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
     }
     public function myEvents(Request $request) {
-        if (Auth::user()->role == 'client') {
-            //$events = Event::orderBy('date')->get()->all();
+        if (Auth::check()) {
+            if (Auth::user()->role == 'client') {
+                //$events = Event::orderBy('date')->get()->all();
 
-            $going = Going::get()->all();
-            $events = Event::get()->all();
-            
-            /*
-            $events = DB::table('going')
-                ->join('users', 'going.userId', '=', 'users.id')
-                ->join('events', 'going.eventId', '=', 'events.id')
-                ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
-                ->orderBy('events.date')
-                ->paginate(2);
-            */
-            
-            
-            $events = DB::table('going')
-                ->join('users', function ($join) {
-                    $join->on('users.id', '=', 'going.userId')
-                        ->where('going.userId', '=', Auth::user()->id);
-                })
-                ->join('events', 'going.eventId', '=', 'events.id')
-                ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
-                ->orderBy('events.date')
-                ->paginate(2);
+                $going = Going::get()->all();
+                $events = Event::get()->all();
+                
+                /*
+                $events = DB::table('going')
+                    ->join('users', 'going.userId', '=', 'users.id')
+                    ->join('events', 'going.eventId', '=', 'events.id')
+                    ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
+                    ->orderBy('events.date')
+                    ->paginate(2);
+                */
+                
+                
+                $events = DB::table('going')
+                    ->join('users', function ($join) {
+                        $join->on('users.id', '=', 'going.userId')
+                            ->where('going.userId', '=', Auth::user()->id);
+                    })
+                    ->join('events', 'going.eventId', '=', 'events.id')
+                    ->select('events.id', 'events.title', 'events.location', 'events.description', 'events.date', 'events.time')
+                    ->orderBy('events.date')
+                    ->paginate(2);
 
 
-            return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo' ]);
+                return view('myEvents', ['events' => $events, 'going' => $going, 'myEvents' => 'yoo' ]);
+            } else {
+                return redirect('/eventFeed');
+            }
         } else {
             return redirect('/eventFeed');
         }
