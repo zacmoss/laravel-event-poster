@@ -102,6 +102,14 @@ class EventsController extends Controller
         $id = Auth::user()->id;
         return (['results' => $results, 'going'=> $going, 'id' => $id]);
     }
+    public function filterByCity(Request $request)
+    {
+        $city = request('city');
+        $results = Event::where('city', '=', $city)->get();
+        $going = Going::get()->all();
+        $id = Auth::user()->id;
+        return (['results' => $results, 'going'=> $going, 'id' => $id]);
+    }
     public function delete(Request $request) {
         if (Auth::user()->role == 'administrator') {
             $event = Event::where('id', request('id'));

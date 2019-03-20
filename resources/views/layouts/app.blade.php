@@ -23,7 +23,7 @@
 
     <style>
         .event-card {
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
         .btn-red {
             background-color: white;

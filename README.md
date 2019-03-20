@@ -24,11 +24,14 @@ User can click to rsvp to an event on individual event page
 
 User can see all events they are rsvp'd to on their myEvents page
 
-User filter events by date
+User can filter events by date
+
+User can filter events by city
 
 
 
-To be added : No event input before current date / Styling / Input length verification / map api integration
+To be added : No event input before current date / Styling / Input length verification / map api integration / add capitalization check for cities (lowercase all cities in db and checking db) / Need
+to be able to apply multiple filters like filter by city AND date
 
 
 
@@ -40,3 +43,5 @@ Should make search with functionality which takes an array of events to search t
 add this feature to myEvents
 
 When adding the date filter, had to change styling of events iteration for myEvents page by adding if statement
+
+Filters need to be re-factored and made in a way that pagination can be passed to them
