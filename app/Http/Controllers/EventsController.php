@@ -17,17 +17,21 @@ class EventsController extends Controller
     }
     public function create()
     {
+        
         $this->validate(request(), [
             'event_title' => 'required|max:60',
+            'event_city' => 'required',
             'event_location' => 'required|max:60',
-            'event_description' => 'required|max:200',
+            'event_description' => 'required|max:400',
             'event_date' => 'required',
             'event_time' => 'required'
         ]);
         
         $event = new Event;
+        
 
         $event->title = request('event_title');
+        $event->city = request('event_city');
         $event->location = request('event_location');
         $event->description = request('event_description');
         $event->date = request('event_date');
@@ -36,7 +40,7 @@ class EventsController extends Controller
         $event->save();
 
         //session()->flash('message', 'Person added!');
-
+        
         return response()->json(['return' => 'event added']); 
         
         /*

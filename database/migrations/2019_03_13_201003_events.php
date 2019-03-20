@@ -16,6 +16,7 @@ class Events extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->string('title');
+            $table->string('city');
             $table->string('location');
             $table->string('description');
             $table->date('date');

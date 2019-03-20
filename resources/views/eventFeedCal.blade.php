@@ -27,7 +27,7 @@
                             @include('layouts.event', ['event' => $event, 'going' => $going])
                         @endforeach
                     @else
-                        <?= "<div class='row justify-content-left' style='margin-top: 4rem'><h4>No events to show</h4></div>" ?>
+                        <?= "<div class='row justify-content-center' style='margin-top: 6rem'><h4>No events to show</h4></div>" ?>
                     @endif
                 @endif
                 <div class='col-lg-10'>
@@ -73,7 +73,28 @@
 </div>
 
 <script>
-    
+
+    // geolocation code on document ready
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        console.log(position);
+    }
+
+    $(document).ready(function() {
+        getLocation();
+    });
+
+
+
+
+
     let role = "<?php if (isset($role)) {
         echo $role;
     } else {

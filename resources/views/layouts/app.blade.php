@@ -79,8 +79,9 @@
                     <!--<img src="logo3.png" width="30px" height="30px">-->
                     EP
                 </a>
-                @if (Auth::check())
+                
                     <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>
+                @if (Auth::check())
                     @if (Auth::user()->role == 'client')
                         <!--<a class='navbar-brand link' href='/myEvents'>My Events</a>-->
                     @endif

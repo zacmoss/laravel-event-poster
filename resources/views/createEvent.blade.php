@@ -20,6 +20,19 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="event_title" class="col-md-4 col-form-label text-md-right">City</label>
+
+                            <div class="col-md-6">
+                                <select id="event_city" class="form-control" name="event_city" required>
+                                    <option value="Lafayette">Lafayette</option>
+                                    <option value="New York">New York</option>
+                                    <option value="Chicago">Chicago</option>
+                                    <option value="Los Angeles">Los Angeles</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="event_location" class="col-md-4 col-form-label text-md-right">Location</label>
 
                             <div class="col-md-6">
@@ -89,4 +102,5 @@
         </div>
     </div>
 </div>
+
 @endsection
