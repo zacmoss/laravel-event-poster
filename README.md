@@ -46,3 +46,33 @@ add this feature to myEvents
 When adding the date filter, had to change styling of events iteration for myEvents page by adding if statement
 
 Filters need to be re-factored and made in a way that pagination can be passed to them
+
+
+
+
+Discussion
+
+Events are rendered two ways in this system. One using the Controllers to pass data to view, the
+other using Ajax to grab events from controllers, then add to html of searchFeed div to 'load'
+the view without a page refresh...
+
+To me, it's much cleaner to pass events to view using the controllers. We demonstrate this
+with the render of Event Feed and the render of the My Events page. With the Ajax strategy, 
+we don't have access to Laravel's paginator which is an issue. Is there a strategy which
+let's us use the first strategy without having to refresh the page when events are filtered???
+
+More of the filter logic can be moved to the controllers. I think we can do all the auth / 
+logged in checks in the controller and pass the html render string in a variable to the view,
+which then just adds the html render string to the div and shows the div.
+
+Down the line: Could add gearman job which goes through and removes past date events every night. 
+(Delete their corresponding going data items as well). Could also add a gearman job which removes
+ going data items with eventIds for events which no longer exist / were deleted, b/c I'm having
+ issues with the delete on cascade option in the model...Could add auto filter on event feed load
+ which uses the geo location var to only load events at that location or default to lafayette or
+ if they don't 'allow' geo locator show an error, must allow geo locator or redirect to a page
+ which asks them to choose a city to view events for. All that would be is the city filter. Could
+ also add a table for available cities and their coords. So we can just grab all currently
+ available cities from that table and include in options of city filter and we would then have
+ those coords to be able to do that - 1 + 1 trick for anyone within a few miles of city to get
+ pegged at that city.
