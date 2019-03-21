@@ -49,7 +49,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date" class="col-md-4 col-form-label text-md-right">Date</label>
+                            <label for="event_date" class="col-md-4 col-form-label text-md-right">Date</label>
 
                             <div class="col-md-6">
                                 <input id="event_date" type="date" class="form-control" name="event_date" required>
@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="date" class="col-md-4 col-form-label text-md-right">Time</label>
+                            <label for="event_time" class="col-md-4 col-form-label text-md-right">Time</label>
 
                             <div class="col-md-6">
                                 <select id="event_time" class="form-control" name="event_time">
@@ -102,5 +102,25 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    // grabs today and passes it as the min for date
+    let today = new Date();
+    let dd = today.getDate();
+    dd = parseInt(dd);
+    let mm = today.getMonth() + 1;
+
+    if (mm < 10) {
+        mm = "0" + parseInt(mm);
+    } else {
+        mm = parseInt(mm);
+    }
+
+    let yyyy = today.getFullYear();
+    yyyy = parseInt(yyyy);
+    document.getElementById("event_date").min = yyyy + '-' + mm + '-' + dd;
+    
+</script>
 
 @endsection

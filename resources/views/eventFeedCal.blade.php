@@ -14,8 +14,8 @@
             <div class="row justify-content-left">
                 <div class="col-lg-11">
                     <div class="row justify-content-left" style="margin-bottom: 2rem">
-                        <div style="margin: .5rem">
-                            <input id="searchString" class="form-control" style="width: 400px; margin-left: .5rem" name="searchString" type="text">
+                        <div style="margin: .5rem; width: 50%">
+                            <input id="searchString" class="form-control" style="width: 100%; margin-left: .5rem" name="searchString" type="text">
                         </div>
                         <div style="margin: .5rem">
                             <button class="btn btn-primary" onclick="search()">Search</button>
@@ -153,53 +153,6 @@
             url: "/api/events/eventSearch/" + searchString,
             success: function(response){
                 ajaxEventsRender(response);
-                /*
-                //let result = response.data;
-                let result = response.results;
-                let going = response.going;                    
-                let events = [];
-                if (result.length > 0) {
-                    let event;
-                    if (loggedIn) {
-                        if (role === 'administrator') {
-                            for (i = 0; i < result.length; i++) {
-                                event = "<div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><a href='/api/events/deleteEvent/" + result[i].id + "'><button>Delete</button></a></div></a></div></div></div>";
-                                events.push(event);
-                            }
-                        } else {
-                            for (i = 0; i < result.length; i++) {
-                                let boo = false;
-                                for (j = 0; j < going.length; j++) {
-                                    if (going[j].eventId === result[i].id && going[j].userId === response.id) {
-                                        boo = true;
-                                    }
-                                }
-                                if (boo) {
-                                    event = "<div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-lg-10'><div class='card'><a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p><p style='color: green'><i>Currently going to this event</i></p></div></a></div></div></div>";
-                                } else {
-                                    event = "<div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-lg-10'><div class='card'><a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></a></div></div></div>";
-                                }
-                                events.push(event);
-                            }
-                        }
-                    } else {
-                        for (i = 0; i < result.length; i++) {
-                            event = "<div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-lg-10'><div class='card'><a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></a></div></div></div>";
-                            events.push(event);
-                        }
-                    }
-                    
-                    
-                } else {
-                    
-                    events.push("<div class='row justify-content-center' style='margin-top: 6rem'><h2>No results</h2></div>");
-                }
-                $('#searchFeed').html(events);
-                $('#eventFeed').css("display", "none");
-                $('#searchPage').css("display", "inline");
-                $('#searchFeed').css("display", "inline");
-                $('#showAllBtn').css("display", "inline");
-                */
             }
         });
     };
@@ -212,52 +165,6 @@
             url: "/api/events/eventFilter/date/" + date,
             success: function(response){
                 ajaxEventsRender(response);
-                /*
-                let result = response.results;
-                let going = response.going;                    
-                let events = [];
-                if (result.length > 0) {
-                    let event;
-                    if (loggedIn) {
-                        if (role === 'administrator') {
-                            for (i = 0; i < result.length; i++) {
-                                event = "<div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><a href='/api/events/deleteEvent/" + result[i].id + "'><button>Delete</button></a></div></div></div></div>";
-                                events.push(event);
-                            }
-                        } else {
-                            for (i = 0; i < result.length; i++) {
-                                let boo = false;
-                                for (j = 0; j < going.length; j++) {
-                                    if (going[j].eventId === result[i].id && going[j].userId === response.id) {
-                                        boo = true;
-                                    }
-                                }
-                                if (boo) {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p><p style='color: green'><i>Currently going to this event</i></p></div></div></div></div></a>";
-                                } else {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div></a>";
-                                }
-                                events.push(event);
-                            }
-                        }
-                    } else {
-                        for (i = 0; i < result.length; i++) {
-                            event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div></a>";
-                            events.push(event);
-                        }
-                    }
-                    
-                    
-                } else {
-                    
-                    events.push("<div class='row justify-content-center' style='margin-top: 6rem'><h2>No results</h2></div>");
-                }
-                $('#searchFeed').html(events);
-                $('#eventFeed').css("display", "none");
-                $('#searchPage').css("display", "inline");
-                $('#searchFeed').css("display", "inline");
-                $('#showAllBtn').css("display", "inline");
-                */
             }
         });
     }
@@ -271,52 +178,6 @@
             url: "/api/events/eventFilter/city/" + city,
             success: function(response){
                 ajaxEventsRender(response);
-                /*
-                let result = response.results;
-                let going = response.going;                    
-                let events = [];
-                if (result.length > 0) {
-                    let event;
-                    if (loggedIn) {
-                        if (role === 'administrator') {
-                            for (i = 0; i < result.length; i++) {
-                                event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>" + result[i].location + "</p><p class='card-text'>" + result[i].description + "</p><p class='card-text'>" + result[i].date + "</p><p class='card-text'>" + result[i].time + "</p><a href='/api/events/deleteEvent/" + result[i].id + "'><button>Delete</button></a></div></div></div></div></a>";
-                                events.push(event);
-                            }
-                        } else {
-                            for (i = 0; i < result.length; i++) {
-                                let boo = false;
-                                for (j = 0; j < going.length; j++) {
-                                    if (going[j].eventId === result[i].id && going[j].userId === response.id) {
-                                        boo = true;
-                                    }
-                                }
-                                if (boo) {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p><p style='color: green'><i>Currently going to this event</i></p></div></div></div></div></a>";
-                                } else {
-                                    event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div></a>";
-                                }
-                                events.push(event);
-                            }
-                        }
-                    } else {
-                        for (i = 0; i < result.length; i++) {
-                            event = "<a href='/event/" + result[i].id + "' style='text-decoration: none; color: black;'><div id=" + result[i].id + " class='row justify-content-left event-card'><div class='col-md-8'><div class='card'><div class='card-header'>" + result[i].title + "</div><div class='card-body'><p class='card-text'>Location: " + result[i].location + "</p><p class='card-text'>Description: " + result[i].description + "</p><p class='card-text'>Date: " + result[i].date + "</p><p class='card-text'>Time: " + result[i].time + "</p></div></div></div></div></a>";
-                            events.push(event);
-                        }
-                    }
-                    
-                    
-                } else {
-                    
-                    events.push("<div class='row justify-content-center' style='margin-top: 6rem'><h2>No results</h2></div>");
-                }
-                $('#searchFeed').html(events);
-                $('#eventFeed').css("display", "none");
-                $('#searchPage').css("display", "inline");
-                $('#searchFeed').css("display", "inline");
-                $('#showAllBtn').css("display", "inline");
-                */
             }
         });
     }
