@@ -30,9 +30,14 @@ User can filter events by city
 
 
 
-To be added : No event input before current date / Styling / Input length verification / map api integration / add capitalization check for cities (lowercase all cities in db and checking db) / Need
-to be able to apply multiple filters like filter by city AND date / Need to restart pagination count when
-clicking show all / should be different filters for event feed (all) and myEvents (going set)
+To be added : Styling / Input length verification / map api integration / add capitalization check for 
+cities (lowercase all cities in db and checking db) / Need to be able to apply multiple filters 
+like filter by city AND date / Need to restart pagination count when clicking show all / should
+be different filters for event feed (all) and myEvents (going set) / Show most rsvp'd to events first / 
+Show number of people currently rsvp'd for an event / Add find a friend and add friend functionality /
+Find friend for the time being would just match first name and last name or username? email? / Add
+'quick adds' functionality for admins and partners. Could hard set a city / address / date for
+adding multiple events more quickly.
 
 
 
@@ -46,6 +51,11 @@ add this feature to myEvents
 When adding the date filter, had to change styling of events iteration for myEvents page by adding if statement
 
 Filters need to be re-factored and made in a way that pagination can be passed to them
+
+If we're going to have toggle-able going or interested buttons on eventFeed / results page / or eventPage
+we're gonna need to have local state initialized with the status of that button on page load, then 
+change the state on toggle and then when they leave the page we would then need to send that
+status update to db...
 
 
 

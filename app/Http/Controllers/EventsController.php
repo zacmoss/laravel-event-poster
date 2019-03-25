@@ -146,7 +146,13 @@ class EventsController extends Controller
         //$event = Event::where('id', request('id'));
         $events = Event::get()->all();
         $going = Going::get()->all();
-        return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id')]);
+        $goingCount = 0;
+        foreach ($going as $g) {
+            if ($g->eventId == request('id')) {
+                $goingCount = $goingCount + 1;
+            }
+        }
+        return view('eventPage', ['events' => $events, 'going' => $going, 'id' => request('id'), 'goingCount' => $goingCount]);
     }
     public function myEvents(Request $request) {
         if (Auth::check()) {

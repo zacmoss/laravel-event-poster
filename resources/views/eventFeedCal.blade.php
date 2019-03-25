@@ -13,7 +13,7 @@
 <!-- width: 400px; -->
             <div class="row justify-content-left">
                 <div class="col-lg-11">
-                    <div class="row justify-content-left" style="margin-bottom: 2rem">
+                    <div class="row justify-content-left">
                         <div style="margin: .5rem; width: 50%">
                             <input id="searchString" class="form-control" style="width: 100%; margin-left: .5rem" name="searchString" type="text">
                         </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="row justify-content-left">
                 <div class="col-lg-12">
-                    <!--<p style="margin-top: .5rem"><i>Showing events for Lafayette</i></p>-->
+                    <p><i>Showing events for Lafayette</i></p>
                     <div id="eventFeed">
                         @if (isset($events))
                             @if (count($events) > 0)
@@ -88,7 +88,7 @@
 </div>
 
 <script>
-    /*
+    
     // check for location
     // if location and if lafayette filter lafayette events
     // else if other location filter to other location
@@ -127,7 +127,7 @@
     $(document).ready(function() {
         getLocation();
     });
-    */
+    
 
 
 

@@ -39,27 +39,42 @@
             @endforeach
             
             <div class='card-body'>
+                @if (isset($goingCount))
+                    @if ($goingCount == 1)
+                        <p><?= $goingCount ?> person going</p>
+                    @else
+                        <p><?= $goingCount ?> people going</p>
+                    @endif
+                @endif
                 <p class='card-text'>Location: <?= $location ?></p>
                 <p class='card-text'>Description <?= $description ?></p>
                 <p class='card-text'>When: <?= $date ?> | <?= $time ?></p>
 
                 @if (Auth::check())
                     @if (Auth::user()->role == 'client')
-                        @if ($boo)
-                            <p><i>Currently going to this event</i></p>
-                            <form method='post' action='/api/going/remove'>
-                                @csrf
-                                <input type='hidden' name="eventId" value='<?= $id ?>'>
-                                <input type='submit' class='btn-red' value="DON'T GO">
-                                
-                            </form>
-                        @else
-                            <form method='post' action='/api/going/add'>
-                                @csrf
-                                <input type='hidden' name="eventId" value='<?= $id ?>'>
-                                <input type='submit' class='btn-green' value="GO TO THIS EVENT">
-                            </form>
-                        @endif
+                        
+                        <form method='post' action='/api/going/toggle'>
+                            @csrf
+                            <div class="form-group row">
+                            <input type="hidden" name="eventId" value="<?= $id ?>">
+                            <div class="col-md-4">
+                                @if ($boo)
+                                    <select name="goingBoo" class="form-control">
+                                        <option value="true">Going</option>
+                                        <option value="false">Not Going</option>
+                                    </select>
+                                @else
+                                    <select name="goingBoo" class="form-control">
+                                        <option value="false">Not Going</option>
+                                        <option value="true">Going</option>
+                                    </select>
+                                @endif
+                                </div>
+                                <div class="col-md-6">
+                                    <input type='submit' class='btn btn-primary' value="RSVP">
+                                </div>
+                            </div>
+                        </form>
                     @endif
                 @endif
                 

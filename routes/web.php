@@ -44,3 +44,4 @@ Route::get('/api/events/deleteEvent/{id}', 'EventsController@delete');
 
 Route::post('/api/going/add', 'GoingController@create');
 Route::post('/api/going/remove', 'GoingController@delete');
+Route::post('/api/going/toggle', 'GoingController@toggle');
