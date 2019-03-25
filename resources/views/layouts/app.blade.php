@@ -81,9 +81,11 @@
                 </a>
                 
                     <a class='navbar-brand link' href='/eventFeed'>Event Feed</a>
+                    <a class='navbar-brand link' href='/poppin'>What's Poppin</a>
                 @if (Auth::check())
                     @if (Auth::user()->role == 'client')
                         <!--<a class='navbar-brand link' href='/myEvents'>My Events</a>-->
+                        
                     @endif
                     <a class='navbar-brand link' href='/createEvent'>Create Event</a>
                 @endif

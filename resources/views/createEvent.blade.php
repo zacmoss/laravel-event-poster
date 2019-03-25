@@ -107,6 +107,7 @@
 
     // grabs today and passes it as the min for date
     let today = new Date();
+    console.log(today);
     let dd = today.getDate();
     dd = parseInt(dd);
     let mm = today.getMonth() + 1;

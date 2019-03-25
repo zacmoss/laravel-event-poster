@@ -191,4 +191,17 @@ class EventsController extends Controller
             return redirect('/eventFeed');
         }
     }
+    public function poppin(Request $request) {
+        $date = date('Y-m-d');
+        $events = Event::get()->where('date', $date);
+
+        $going = Going::get()->all();
+
+        return view('whatsPoppin', ['events' => $events, 'going' => $going]);
+    }
+    public function poppinDateFilter(Request $request) {
+        if (request($date)) {
+            // grab events for date and order by most going
+        }
+    }
 }

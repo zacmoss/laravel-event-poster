@@ -37,7 +37,8 @@ be different filters for event feed (all) and myEvents (going set) / Show most r
 Show number of people currently rsvp'd for an event / Add find a friend and add friend functionality /
 Find friend for the time being would just match first name and last name or username? email? / Add
 'quick adds' functionality for admins and partners. Could hard set a city / address / date for
-adding multiple events more quickly.
+adding multiple events more quickly. / What's Poppin - Pick a day and show an ordered list of 
+events by how many people are rsvp'd
 
 
 

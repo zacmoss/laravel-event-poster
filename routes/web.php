@@ -28,6 +28,7 @@ Route::get('/createEvent', function() {
 
 Route::get('/event/{id}', 'EventsController@singleEvent');
 Route::get('/myEvents', 'EventsController@myEvents');
+Route::get('/poppin', 'EventsController@poppin');
 
 Auth::routes();
 
